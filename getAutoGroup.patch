@@ -1,0 +1,53 @@
+diff --git a/src/main/java/com/youzan/pfcase/web/my/MyController.java b/src/main/java/com/youzan/pfcase/web/my/MyController.java
+index 343f56e..08e0cb4 100644
+--- a/src/main/java/com/youzan/pfcase/web/my/MyController.java
++++ b/src/main/java/com/youzan/pfcase/web/my/MyController.java
+@@ -185,6 +185,28 @@ public class MyController {
+         return re;
+     }
+     
++    @RequestMapping("/getAutoGroups")
++    public @ResponseBody ResponseEntity<Object> groupsUrl(HttpServletRequest request,HttpServletResponse response){
++    	Map<String, Object> map = new HashMap<String, Object>();
++        HttpHeaders headers=new HttpHeaders();
++        headers.add("Access-Control-Allow-Origin", "*");
++        ResponseEntity<Object> re =     new ResponseEntity<Object>(map, headers, HttpStatus.OK);
++        List<String> autoGroups=new LinkedList<String>();
++        try {
++			String auto_groups=SysProperties.getInstance().getProperty("auto_groups");
++			JSONArray groups=new JSONArray(auto_groups);
++			for (int i = 0; i < groups.length(); i++) {
++				autoGroups.add(groups.getString(i));
++			}
++			map.put("result", "1");
++			map.put("autoGroups", autoGroups);
++		} catch (Exception e) {
++			e.printStackTrace();
++            map.put("result", -2);
++		}
++        return re;
++    }
++    
+     @Autowired
+     private DappsMapper dappsMapper;
+     @RequestMapping("/dapps")  //获得用户账户信息
+diff --git a/src/main/resources/conf/system.properties b/src/main/resources/conf/system.properties
+index 78e5210..fcb3954 100644
+--- a/src/main/resources/conf/system.properties
++++ b/src/main/resources/conf/system.properties
+@@ -12,3 +12,6 @@ proxy_password=beechat.com
+ 
+ backup_ips=[47.74.182.18,47.91.22.139]
+ backup_ports=[1080,1080]
++
++
++auto_groups=["https://t.me/test1","https://t.me/test2"]
+\ No newline at end of file
+diff --git a/start.sh b/start.sh
+index deecffb..03da3db 100755
+--- a/start.sh
++++ b/start.sh
+@@ -1,2 +1,2 @@
+-mvn tomcat7:run -Dmaven.tomcat.port=80 
++mvn tomcat7:run -Dmaven.tomcat.port=8081
+ 

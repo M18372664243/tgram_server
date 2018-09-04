@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.youzan.pfcase.mapper.LoginMapper">    
+
+	<cache />
+
+    <select id="getUser" parameterType="string" resultType="AdminEntity">
+        select * from user where name=#{name}
+    </select>
+	
+    <insert id="insertUser" parameterType="AdminEntity">
+        insert into user values(#{id},#{name},#{salt},#{passwordMd5},#{created},#{updated})
+    </insert>
+    
+</mapper>
+	    

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youzan.pfcase.mapper.DappsMapper">
+
+    <cache />
+
+    <select id="getAllDapps" parameterType="string" resultType="Dapps">
+        SELECT
+        *
+        from dapps
+    </select>
+	
+    <select id="getDapps" parameterType="Integer" resultType="Dapps">
+        select * from dapps where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsEn" parameterType="Integer" resultType="Dapps">
+        select * from dapps_en where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsKo" parameterType="Integer" resultType="Dapps">
+        select * from dapps_ko where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsTw" parameterType="Integer" resultType="Dapps">
+        select * from dapps_tw where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <select id="getDappsWechat" parameterType="Integer" resultType="DappsWechat">
+        select * from dapps_wechat where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsWechatTw" parameterType="Integer" resultType="DappsWechat">
+        select * from dapps_wechat_tw where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsWechatEn" parameterType="Integer" resultType="DappsWechat">
+        select * from dapps_wechat_en where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    <select id="getDappsWechatKo" parameterType="Integer" resultType="DappsWechat">
+        select * from dapps_wechat_ko where enabled=1 order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <select id="getGroups" resultType="Integer">
+        select distinct dappgroup from dapps_wechat where enabled=1
+    </select>
+    <update id="dappUpdate" parameterType="Dapps">
+		UPDATE dapps
+        SET dapps.dappname=#{dappname},
+        	dapps.dapplink=#{dapplink},
+            dapps.dappicon=#{dappicon},
+            dapps.updatetime=#{updatetime}
+        WHERE dapps.dappid=#{dappid}
+	</update>
+	<update id="dappUpdateEn" parameterType="Dapps">
+		UPDATE dapps_en
+        SET dapps_en.dappname=#{dappname},
+        	dapps_en.dapplink=#{dapplink},
+            dapps_en.dappicon=#{dappicon},
+            dapps_en.updatetime=#{updatetime}
+        WHERE dapps_en.dappid=#{dappid}
+	</update>
+	<update id="dappUpdateTw" parameterType="Dapps">
+		UPDATE dapps_tw
+        SET dapps_tw.dappname=#{dappname},
+        	dapps_tw.dapplink=#{dapplink},
+            dapps_tw.dappicon=#{dappicon},
+            dapps_tw.updatetime=#{updatetime}
+        WHERE dapps_tw.dappid=#{dappid}
+	</update>
+	<update id="dappUpdateKo" parameterType="Dapps">
+		UPDATE dapps_ko
+        SET dapps_ko.dappname=#{dappname},
+        	dapps_ko.dapplink=#{dapplink},
+            dapps_ko.dappicon=#{dappicon},
+            dapps_ko.updatetime=#{updatetime}
+        WHERE dapps_ko.dappid=#{dappid}
+	</update>
+	<update id="dappsWechatUpdate" parameterType="DappsWechat">
+		UPDATE dapps_wechat
+        SET dapps_wechat.dappname=#{dappname},
+        	dapps_wechat.dapplink=#{dapplink},
+            dapps_wechat.dappicon=#{dappicon},
+            dapps_wechat.updatetime=#{updatetime}
+        WHERE dapps_wechat.dappid=#{dappid}
+	</update>
+	<update id="dappsWechatUpdateEn" parameterType="DappsWechat">
+		UPDATE dapps_wechat_en
+        SET dapps_wechat_en.dappname=#{dappname},
+        	dapps_wechat_en.dapplink=#{dapplink},
+            dapps_wechat_en.dappicon=#{dappicon},
+            dapps_wechat_en.updatetime=#{updatetime}
+        WHERE dapps_wechat_en.dappid=#{dappid}
+	</update>
+	<update id="dappsWechatUpdateTw" parameterType="DappsWechat">
+		UPDATE dapps_wechat_tw
+        SET dapps_wechat_tw.dappname=#{dappname},
+        	dapps_wechat_tw.dapplink=#{dapplink},
+            dapps_wechat_tw.dappicon=#{dappicon},
+            dapps_wechat_tw.updatetime=#{updatetime}
+        WHERE dapps_wechat_tw.dappid=#{dappid}
+	</update>
+	<update id="dappsWechatUpdateKo" parameterType="DappsWechat">
+		UPDATE dapps_wechat_ko
+        SET dapps_wechat_ko.dappname=#{dappname},
+        	dapps_wechat_ko.dapplink=#{dapplink},
+            dapps_wechat_ko.dappicon=#{dappicon},
+            dapps_wechat_ko.updatetime=#{updatetime}
+        WHERE dapps_wechat_ko.dappid=#{dappid}
+	</update>
+</mapper>
+

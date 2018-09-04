@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youzan.pfcase.mapper.GroupsMapper">
+
+    <cache />
+
+    <select id="getAllGroups" parameterType="string" resultType="Groups">
+        SELECT
+        *
+        from groups
+    </select>
+	
+    <select id="getGroups" parameterType="Integer" resultType="Groups">
+        select * from groups where enabled=1 order by seq asc limit #{0},#{1}
+    </select>
+    <select id="getGroupsTw" parameterType="Integer" resultType="Groups">
+        select * from groups_tw where enabled=1 order by seq asc limit #{0},#{1}
+    </select><select id="getGroupsEn" parameterType="Integer" resultType="Groups">
+        select * from groups_en where enabled=1 order by seq asc limit #{0},#{1}
+    </select><select id="getGroupsKo" parameterType="Integer" resultType="Groups">
+        select * from groups_ko where enabled=1 order by seq asc limit #{0},#{1}
+    </select>
+    <select id="getGroupsByType" parameterType="Integer" resultType="Groups">
+        select * from groups where enabled=1 and seq= #{0}
+    </select>
+    
+    <select id="searchGroups" parameterType="map" resultType="Groups">
+    	select * from groups where groupname like #{groupName} group by groupname order by seq asc limit #{offset},#{limit}
+    </select>
+    
+    <update id="groupUpdate" parameterType="Groups">
+		UPDATE groups
+        SET groups.groupname=#{groupname},
+        	groups.grouplink=#{grouplink},
+            groups.groupicon=#{groupicon},
+            groups.updatetime=#{updatetime}
+        WHERE groups.groupid=#{groupid}
+	</update>
+	<update id="groupUpdateEn" parameterType="Groups">
+		UPDATE groups_en
+        SET groups_en.groupname=#{groupname},
+        	groups_en.grouplink=#{grouplink},
+            groups_en.groupicon=#{groupicon},
+            groups_en.updatetime=#{updatetime}
+        WHERE groups_en.groupid=#{groupid}
+	</update>
+	<update id="groupUpdateTw" parameterType="Groups">
+		UPDATE groups_tw
+        SET groups_tw.groupname=#{groupname},
+        	groups_tw.grouplink=#{grouplink},
+            groups_tw.groupicon=#{groupicon},
+            groups_tw.updatetime=#{updatetime}
+        WHERE groups_tw.groupid=#{groupid}
+	</update>
+	<update id="groupUpdateKo" parameterType="Groups">
+		UPDATE groups_ko
+        SET groups_ko.groupname=#{groupname},
+        	groups_ko.grouplink=#{grouplink},
+            groups_ko.groupicon=#{groupicon},
+            groups_ko.updatetime=#{updatetime}
+        WHERE groups_ko.groupid=#{groupid}
+	</update>
+</mapper>
+

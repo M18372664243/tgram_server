@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youzan.pfcase.mapper.PicMapper">
+
+    <cache />
+
+    <select id="getAllPics" parameterType="string" resultType="Picture">
+        SELECT
+        *
+        from picture
+    </select>
+	
+    <select id="getPics" parameterType="Integer" resultType="Picture">
+        select * from picture order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <select id="getPicsTw" parameterType="Integer" resultType="Picture">
+        select * from picture_tw order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <select id="getPicsEn" parameterType="Integer" resultType="Picture">
+        select * from picture_en order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <select id="getPicsKo" parameterType="Integer" resultType="Picture">
+        select * from picture_ko order by seq asc  limit #{0},#{1}
+    </select>
+    
+    <update id="imgUpdate" parameterType="Picture">
+		UPDATE picture
+        SET picture.name=#{name},
+        	picture.link=#{link},
+        	picture.linktype=#{linktype},
+            picture.icon=#{icon},
+            picture.updatetime=#{updatetime}
+        WHERE picture.id=#{id}
+	</update>
+	<update id="imgUpdateEn" parameterType="Picture">
+		UPDATE picture_en
+        SET picture_en.name=#{name},
+        	picture_en.link=#{link},
+        	picture_en.linktype=#{linktype},
+            picture_en.icon=#{icon},
+            picture_en.updatetime=#{updatetime}
+        WHERE picture_en.id=#{id}
+	</update>
+	<update id="imgUpdateTw" parameterType="Picture">
+		UPDATE picture_tw
+        SET picture_tw.name=#{name},
+        	picture_tw.link=#{link},
+        	picture_tw.linktype=#{linktype},
+            picture_tw.icon=#{icon},
+            picture_tw.updatetime=#{updatetime}
+        WHERE picture_tw.id=#{id}
+	</update>
+	<update id="imgUpdateKo" parameterType="Picture">
+		UPDATE picture_ko
+        SET picture_ko.name=#{name},
+        	picture_ko.link=#{link},
+        	picture_ko.linktype=#{linktype},
+            picture_ko.icon=#{icon},
+            picture_ko.updatetime=#{updatetime}
+        WHERE picture_ko.id=#{id}
+	</update>
+</mapper>
+
