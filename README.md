@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![bug](README/capture_bug.png)
 
 # 捉虫记
@@ -116,3 +117,6 @@ The project is open-sourced software licensed under the [MIT license][1]
 
 
 [1]: https://opensource.org/licenses/MIT
+=======
+# tgram_server
+>>>>>>> 0ba9b29775c07cc7d3c8deae8d1b3e2357f6854a
